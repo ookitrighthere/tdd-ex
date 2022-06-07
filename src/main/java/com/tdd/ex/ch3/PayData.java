@@ -3,6 +3,7 @@ package com.tdd.ex.ch3;
 import java.time.LocalDate;
 
 public class PayData {
+	private LocalDate firstBillingDate;
 	private LocalDate billingDate;
 	private int payAmount;
 	
@@ -10,10 +11,13 @@ public class PayData {
 	
 	public PayData(LocalDate billingDate, int payAmount) {
 		super();
+		this.firstBillingDate = firstBillingDate;
 		this.billingDate = billingDate;
 		this.payAmount = payAmount;
 	}
-	
+	public LocalDate getFirstBillingDate() {
+		return firstBillingDate;
+	}
 	public LocalDate getBillingDate() {
 		return billingDate;
 	}
@@ -26,7 +30,11 @@ public class PayData {
 	}
 	public static class Builder {
 		private PayData data = new PayData();
-
+		
+		public Builder firstBillingDate(LocalDate firstBillingDate) {
+			data.firstBillingDate = firstBillingDate;
+			return this;
+		}
 		public Builder billingDate(LocalDate billingDate) {
 			data.billingDate = billingDate;
 			return this;
