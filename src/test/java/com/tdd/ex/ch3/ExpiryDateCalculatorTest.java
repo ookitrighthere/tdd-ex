@@ -127,11 +127,19 @@ public class ExpiryDateCalculatorTest {
 	void 첫_납부일과_만료일_일자가_다를때_이만원_이상_납부() {
 		assertExpiryDate(
 				PayData.builder()
-						.firstBillingDate(LocalDate.of(2019, 1, 31))
-						.billingDate(LocalDate.of(2019, 2, 28))
+						.firstBillingDate(LocalDate.of(2020, 1, 31))
+						.billingDate(LocalDate.of(2020, 2, 28))
 						.payAmount(20_000)
 						.build(),
-				LocalDate.of(2019, 4, 30));
+				LocalDate.of(2020, 4, 30));
+		//첫 납부일 3/31 만료되는 4/30에 3만원을 납부하면 다음 만료일은 7/31일이다.
+		assertExpiryDate(
+				PayData.builder()
+						.firstBillingDate(LocalDate.of(2019, 3, 31))
+						.billingDate(LocalDate.of(2019, 4, 30))
+						.payAmount(30_000)
+						.build(),
+				LocalDate.of(2019, 7, 31));
 	}
 	
 	
